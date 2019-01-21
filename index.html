@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>React Bangkok 3.1.0 Ticket Giveaway</title>
+    <style>
+      body {
+        background: #353433;
+        color: #e9e8e7;
+        font: 32px sans-serif;
+        text-align: center;
+        padding-top: 64px;
+      }
+      h1 {
+        font-size: 24px;
+        color: #8b8685;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>React Bangkok 3.1.0 Ticket Giveaway - Landing page</h1>
+    <div id="app">(Initializing app...)</div>
+    <script src="https://unpkg.com/react@16.8.0-alpha.1/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16.8.0-alpha.1/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase.js"></script>
+    <script src="https://unpkg.com/fiery@0.3.0-0/umd/fiery.js"></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-99360357-3"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag('js', new Date())
+      gtag('config', 'UA-99360357-3')
+    </script>
+    <script>
+      var config = {
+        apiKey: 'AIzaSyDLDD_KtKkfAj9sgOHupxUuDt_p8g19bkU',
+        authDomain: 'fiery-react.firebaseapp.com',
+        databaseURL: 'https://fiery-react.firebaseio.com',
+        projectId: 'fiery-react',
+        storageBucket: 'fiery-react.appspot.com',
+        messagingSenderId: '284926450412'
+      }
+      firebase.initializeApp(config)
+    </script>
+    <script type="text/babel">
+      var messageRef = firebase.database().ref('projects/reactbkk310-landing')
+      function App() {
+        const dataState = fiery.useFirebaseDatabase(messageRef)
+        if (dataState.loading) {
+          return '(Loading data...)'
+        }
+        if (dataState.failed) {
+          return '(Loading data failed!)'
+        }
+        return dataState.data.message
+      }
+      ReactDOM.render(<App />, document.querySelector('#app'))
+    </script>
+  </body>
+</html>
